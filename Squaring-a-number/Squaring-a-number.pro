@@ -13,6 +13,7 @@ SOURCES += \
     win.cpp
 
 HEADERS += \
+    strvalidator.h \
     win.h
 
 # Default rules for deployment.
