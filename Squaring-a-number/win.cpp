@@ -3,9 +3,9 @@
 Win::Win(QWidget *parent)
     : QWidget(parent)
 {
+
 }
 
-Win::~Win()
-{
+Win::~Win() {
 }
 
