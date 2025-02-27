@@ -2,9 +2,10 @@
 
 #include <QApplication>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     QApplication a(argc, argv);
-    Win w(nullptr);
+    Win w;
     w.show();
     return a.exec();
 }
