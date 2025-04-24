@@ -10,14 +10,14 @@ CONFIG += c++17
 
 SOURCES += \
     area.cpp \
-    figura.cpp \
+    figure.cpp \
     main.cpp \
     mainwindow.cpp \
     windows.cpp
 
 HEADERS += \
     area.h \
-    figura.h \
+    figure.h \
     mainwindow.h \
     windows.h
 
