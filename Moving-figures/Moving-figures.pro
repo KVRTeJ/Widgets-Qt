@@ -12,17 +12,12 @@ SOURCES += \
     area.cpp \
     figure.cpp \
     main.cpp \
-    mainwindow.cpp \
     windows.cpp
 
 HEADERS += \
     area.h \
     figure.h \
-    mainwindow.h \
     windows.h
-
-FORMS += \
-    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
