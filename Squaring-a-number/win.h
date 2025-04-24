@@ -10,7 +10,7 @@
 
 
 class Win : public QWidget {
-    Q_OBJECT // Макрос для Qt, который обеспечивает коррктное создание сигналов и слотов
+    Q_OBJECT
 public:
     Win(QWidget *parent = nullptr);
     ~Win() = default;

@@ -11,8 +11,9 @@ Win::Win(QWidget *parent)
     setWindowTitle("Возведение в квадрат");
 
     frame = new QFrame(this);
-    frame->setFrameShadow(QFrame::Raised);
+
     frame->setFrameShape(QFrame::Panel);
+    frame->setFrameShadow(QFrame::Raised);
 
     inputLabel = new QLabel("Введите число:", this);
     inputEdit = new QLineEdit("", this);
@@ -25,7 +26,6 @@ Win::Win(QWidget *parent)
     nextButton = new QPushButton("Следующее", this);
     exitButton = new QPushButton("Выход", this);
 
-    //Компоновка приложения
     QVBoxLayout *vLayout1 = new QVBoxLayout(frame);
     vLayout1->addWidget(inputLabel);
     vLayout1->addWidget(inputEdit);
@@ -50,11 +50,15 @@ Win::Win(QWidget *parent)
 
 void Win::begin() {
     inputEdit->clear();
+
     nextButton->setEnabled(false);
     nextButton->setDefault(false);
+
     inputEdit->setEnabled(true);
     outputLabel->setVisible(false);
-    outputEdit->setEnabled(false);
+
+//  Вместо setEnabled(false) я предпочел сделать QLineEdit readonly
+    outputEdit->setReadOnly(true);
     inputEdit->setFocus();
 }
 
@@ -67,11 +71,11 @@ void Win::calc() {
     a = str.toDouble(&ok);
     if(ok) {
         r = a * a;
+
         str.setNum(r);
         outputEdit->setText(str);
-        inputEdit->setEnabled(false);
         outputLabel->setVisible(true);
-        outputEdit->setVisible(true);
+
         nextButton->setDefault(true);
         nextButton->setEnabled(true);
         nextButton->setFocus();
@@ -79,7 +83,7 @@ void Win::calc() {
         if(!str.isEmpty()) {
             QMessageBox msgBox(QMessageBox::Information,
                                "Возведение в квадрат",
-                              "Введено неверное значение",
+                               "Введено неверное значение",
                                QMessageBox::Ok);
             msgBox.exec();
         }
