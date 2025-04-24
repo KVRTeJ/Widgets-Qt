@@ -1,6 +1,9 @@
 #include <QVBoxLayout>
 #include <QMessageBox>
 
+#include <float.h>
+#include <math.h>
+
 #include "win.h"
 
 #include "strvalidator.h"
@@ -8,6 +11,8 @@
 Win::Win(QWidget *parent)
     : QWidget(parent)
 {
+    m_maxAbsInputValue = sqrt(FLT_MAX);
+
     setWindowTitle("Возведение в квадрат");
 
     frame = new QFrame(this);
@@ -17,6 +22,7 @@ Win::Win(QWidget *parent)
 
     inputLabel = new QLabel("Введите число:", this);
     inputEdit = new QLineEdit("", this);
+
     StrValidator *v = new StrValidator(inputEdit);
     inputEdit->setValidator(v);
 
@@ -31,6 +37,7 @@ Win::Win(QWidget *parent)
     vLayout1->addWidget(inputEdit);
     vLayout1->addWidget(outputLabel);
     vLayout1->addWidget(outputEdit);
+    vLayout1->addStretch();
 
     QVBoxLayout *vLayout2 = new QVBoxLayout();
     vLayout2->addWidget(nextButton);
@@ -55,10 +62,11 @@ void Win::begin() {
     nextButton->setDefault(false);
 
     inputEdit->setEnabled(true);
+
+    outputEdit->setVisible(false);
+    outputEdit->setEnabled(false);
     outputLabel->setVisible(false);
 
-//  Вместо setEnabled(false) я предпочел сделать QLineEdit readonly
-    outputEdit->setReadOnly(true);
     inputEdit->setFocus();
 }
 
@@ -70,14 +78,30 @@ void Win::calc() {
     QString str = inputEdit->text();
     a = str.toDouble(&ok);
     if(ok) {
+        if(abs(a) > m_maxAbsInputValue) {
+            QMessageBox msgBox(QMessageBox::Information,
+                               "Возведение в квадрат",
+                               "Введено слишком большое число",
+                               QMessageBox::Ok);
+            msgBox.exec();
+
+            return;
+        }
+
         r = a * a;
 
         str.setNum(r);
         outputEdit->setText(str);
+
+        inputEdit->setEnabled(false);
+
         outputLabel->setVisible(true);
+        outputEdit->setVisible(true);
 
         nextButton->setDefault(true);
         nextButton->setEnabled(true);
+        nextButton->setVisible(true);
+
         nextButton->setFocus();
     } else {
         if(!str.isEmpty()) {

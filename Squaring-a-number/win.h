@@ -30,6 +30,9 @@ protected:
 
     QPushButton *nextButton = nullptr;
     QPushButton *exitButton = nullptr;
+
+private:
+    float m_maxAbsInputValue = 0;
 };
 
 #endif // WIN_H
