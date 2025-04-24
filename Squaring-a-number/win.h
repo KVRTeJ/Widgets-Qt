@@ -21,10 +21,13 @@ public slots:
 
 protected:
     QFrame *frame = nullptr;
+
     QLabel *inputLabel = nullptr;
-    QLineEdit *inputEdit = nullptr;
     QLabel *outputLabel = nullptr;
+
+    QLineEdit *inputEdit = nullptr;
     QLineEdit *outputEdit = nullptr;
+
     QPushButton *nextButton = nullptr;
     QPushButton *exitButton = nullptr;
 };
