@@ -12,6 +12,9 @@ Win::Win(QWidget *parent)
     edit1 = new Counter("0", this);
     edit2 = new Counter("0", this);
 
+    edit1->setReadOnly(true);
+    edit2->setReadOnly(true);
+
     calcButton = new QPushButton("+1", this);
     exitButton = new QPushButton("Выход", this);
 
@@ -32,7 +35,7 @@ Win::Win(QWidget *parent)
     layout->addLayout(linesEditLayout);
     layout->addLayout(buttomsLayout);
 
-    connect(exitButton, SIGNAL(clicled(bool)), this, SLOT(close()));
-    connect(calcButton, SIGNAL(clicked(bool)), edit1, SLOT(add_one()));
-    connect(edit1, SIGNAL(tick_signal()), edit2, SLOT(add_one()));
+    connect(exitButton, &QPushButton::clicked, this, &QWidget::close);
+    connect(calcButton, &QPushButton::clicked, edit1, &Counter::add_one);
+    connect(edit1, &Counter::tick_signal, edit2, &Counter::add_one);
 }
