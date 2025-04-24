@@ -6,8 +6,7 @@
 
 #include "Area.h"
 
-class Windows : public QWidget
-{
+class Windows : public QWidget {
     Q_OBJECT
 public:
     Windows();

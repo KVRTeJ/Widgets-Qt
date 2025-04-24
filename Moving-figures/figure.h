@@ -3,8 +3,7 @@
 
 #include <QPainter>
 
-class Figure
-{
+class Figure {
 public:
     Figure(int x, int y, int halflen)
         :x(x), y(y), halflen(halflen)
@@ -16,8 +15,7 @@ protected:
     virtual void draw(QPainter *painter) = 0;
 };
 
-class MyLine: public Figure
-{
+class MyLine: public Figure {
 public:
     MyLine(int x, int y, int halflen)
         :Figure(x, y, halflen)
@@ -26,8 +24,7 @@ protected:
     void draw(QPainter *painter) override;
 };
 
-class MyRect: public Figure
-{
+class MyRect: public Figure {
 public:
     MyRect(int x, int y, int halflen)
         :Figure(x, y, halflen)

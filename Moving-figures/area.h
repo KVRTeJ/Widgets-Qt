@@ -5,8 +5,7 @@
 
 #include "Figure.h"
 
-class Area : public QWidget
-{
+class Area : public QWidget {
     Q_OBJECT
 public:
     explicit Area(QWidget *parent = nullptr);
