@@ -3,10 +3,24 @@
 
 #include <QWidget>
 
-class Area
+#include "Figure.h"
+
+class Area : public QWidget
 {
+    Q_OBJECT
 public:
-    Area();
+    explicit Area(QWidget *parent = nullptr);
+    ~Area();
+    MyLine *myLine = nullptr;
+    MyRect *myRect = nullptr;
+protected:
+    void paintEvent(QPaintEvent *event);
+    void timerEvent(QTimerEvent *event);
+    void showEvent(QShowEvent *event);
+    void hideEvent(QHideEvent *event);
+private:
+    int myTimer;
+    float alpha;
 };
 
 #endif // AREA_H
